@@ -4,7 +4,9 @@ class ProfilesController < ApplicationController
     raise Forbidden unless user_safe?
 
     @skill_categories = user_reccomend_skill_categories
-    @articles = @user.articles
+    # ユーザーに紐づく記事をすべて取得
+    # 関連テーブルでの絞り込みがないため、LEFT OUTER JOIN句を使わないpreloadを使用
+    @articles = @user.articles.preload(:tags)
   end
 
   private
