@@ -12,9 +12,10 @@ class ProfilesController < ApplicationController
   private
 
   def user_safe?
-    @user.user_cautions.all? do |user_caution|
-      Time.zone.now > user_caution.caution_freeze.end_time
-    end
+    # INNER JOIN句を使用する為、joinsメソッドを使用
+    # LEFT OUTER JOINを使用した場合、caution_freezesが存在しないuser_cautionsを取得してしまい余計なデータを処理対象にしてしまい処理コストが増える
+    @user.user_cautions.joins(:caution_freeze).
+    where("caution_freezes.end_time > ?", Time.zone.now).blank?
   end
 
   def user_reccomend_skill_categories
