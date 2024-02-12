@@ -219,8 +219,8 @@ PLATFORMS
   x86_64-darwin-19
 
 DEPENDENCIES
-  bullet
   bootsnap (>= 1.15.0)
+  bullet
   byebug
   capybara (>= 2.15)
   jbuilder (~> 2.7)

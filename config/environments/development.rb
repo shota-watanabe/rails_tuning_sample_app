@@ -1,6 +1,16 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  config.after_initialize do
+    Bullet.enable        = true # bulletを有効にするか
+    Bullet.alert         = true # N+1検出時にブラウザにアラート表示
+    Bullet.bullet_logger = true # bulle用ログファイルをlog/bullet.logに出力
+    Bullet.console       = true # N+1検出時にブラウザのconsole.logに出力
+  # Bullet.growl         = true
+    Bullet.rails_logger  = true # N+1検出時にrailsにログ出力
+    Bullet.add_footer    = true # N+1検出時にブラウザ左下に検出情報を表示
+  end
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded any time
