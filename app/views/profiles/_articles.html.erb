@@ -14,6 +14,7 @@
               <%= article.title %>
             </h3>
             <p><%= article.description %></p>
+          <%# 取得した記事毎に、記事に紐づくすべてのタグ名を表示 %>
             <% article.tags.each do |tag| %>
               <span class="tag is-light"><%= tag.name %></span>
             <% end %>
