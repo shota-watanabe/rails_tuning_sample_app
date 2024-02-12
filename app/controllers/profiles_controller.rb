@@ -18,7 +18,8 @@ class ProfilesController < ApplicationController
   end
 
   def user_reccomend_skill_categories
-    @user.skills.map(&:skill_category).
-      filter { |skill_category| skill_category.reccomend }.uniq
+    SkillCategory.eager_load(:skills).
+    where(reccomend: true).
+    where(skills: { user_id: @user.id })
   end
 end
