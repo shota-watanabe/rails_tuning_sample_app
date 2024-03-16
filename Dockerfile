@@ -18,4 +18,4 @@ RUN bundle install -j4
 
 RUN yarn
 
-CMD sh -c "rails s -b 0.0.0.0"
+CMD sh -c "rails s -p 4000 -b 0.0.0.0"
